@@ -41,12 +41,12 @@ class MakeData:
         CRNT = comm.chiose_country()  # 法定代表人国籍  必填, 基本项
         CRIT = comm.cert_type('1')  # 法定代表人证件类型（报送）  必填, 基本项
         CRIT_ORI = CRIT  # 法定代表人证件类型（原值）  必填, 基本项
-        CRID = comm.person_cert_num()  # 法定代表人证件号码  必填, 基本项
+        CRID = fake.ssn(min_age=24, max_age=56)  # 法定代表人证件号码  必填, 基本项
         CRVT = comm.make_enable_date()   # 法定代表人证件有效期  , 基本项
         CTNT = comm.chiose_country()  # 注册国家  ,
         FDDT = comm.make_date(beg=-20, end=0)  # 成立日期  ,
         CPTL = ''  # 注册资金  ,
-        CRCY = ''  # 注册资金币种  ,
+        CRCY = comm.make_tctp_data()  # 注册资金币种  ,
         PUCP = ''  # 实收资本  ,
         EECP = ''  # 企业经济成份  ,
         TAST = ''  # 企业总资产  ,
@@ -54,12 +54,12 @@ class MakeData:
         ENUM = ''  # 企业人员规模  ,
         SCTP = ''  # 企业经济规模  ,
         CBSC = ''  # 经营范围  ,
-        ABAN = ''  # 授权办理人姓名  ,
-        ABNT = ''  # 授权办理人国籍  ,
+        ABAN = fake.name()  # 授权办理人姓名  ,
+        ABNT = comm.chiose_country()  # 授权办理人国籍  ,
         ABIT = ''  # 授权办理人证件类型（报送）  ,
         ABIT_ORI = ''  # 授权办理人证件类型（原值）  ,
-        ABAI = ''  # 授权办理人证件号码  ,
-        ABVT = comm.turn_date10(comm.make_date())  # 授权办理人证件有效期限  ,
+        ABAI = fake.ssn(min_age=24, max_age=56)  # 授权办理人证件号码  ,
+        ABVT = comm.make_enable_date()  # 授权办理人证件有效期限  ,
         ATEL = ''  # 授权办理人联系电话  ,
         ADNT = comm.chiose_country()  # 地区国家  必填,
         ADPV = ''  # 地区省  ,
@@ -67,9 +67,9 @@ class MakeData:
         ADDC = ''  # 地区县  ,
         ADDR = comm.make_address()  # 详细地址  必填, 基本项
         PSCD = ''  # 邮编  ,
-        LKNM = ''  # 联系人姓名  ,
+        LKNM = fake.name()  # 联系人姓名  ,
         LDUT = ''  # 联系人职务  ,
-        CMBL = ''  # 手机  必填
+        CMBL = fake.phone_number()  # 手机  必填
         CTEL = comm.random_num(9)  # 固定电话  必填 基本项
         CEML = comm.make_email_data()  # 电子邮箱  ,
         CSIO = ''  # 是否境外  ,
@@ -89,13 +89,13 @@ class MakeData:
         ISLA = ''  # 是否贷款运用方  ,
         MBRC_ORI = ''  # 管理机构（原值）  必填,
         CTST = comm.cust_status_2()  # 客户状态  必填,
-        REMK = ''  # 备注  ,
+        REMK = fake.text(max_nb_chars=30)  # 备注  ,
         RSCD = ''  # 来源系统编码  必填,
-        BNNM = ''  # 控股股东或实际控制人姓名  ,
+        BNNM = fake.name()  # 控股股东或实际控制人姓名  ,
         BITP = ''  # 控股股东或实际控制人证件类型（报送）  ,
         BITP_ORI = ''  # 控股股东或实际控制人证件类型（原值）  ,
-        BNID = ''  # 控股股东或实际控制人证件号码  ,
-        BIVT = ''  # 控股股东或实际控制人证件有效期  ,
+        BNID = fake.ssn(min_age=24, max_age=56)  # 控股股东或实际控制人证件号码  ,
+        BIVT = comm.make_enable_date()  # 控股股东或实际控制人证件有效期  ,
         MBRC_MULTI = ''  # 相关部门-存在多个部门，用逗号分隔  必填,
         BEON = ''  # 受益所有人标识  ,
         EMRS = ''  # 豁免原因  ,
@@ -108,7 +108,7 @@ class MakeData:
         个人数据
         :return:
         """
-        CSNM = '2222'  # 客户号  必填，
+        self.CSNM = 'per_{}'.format(num)  # 客户号  必填，
         CCUP = '2222'  # 上游客户标识  ，
         CCMD = '2222'  # 中游客户标识  ，
         CCDW = ''  # 下游客户标识  ，
@@ -116,34 +116,34 @@ class MakeData:
         CTEN = ''  # 拼音/英文名称  ，
         CITP = ''  # 证件类型（报送）  必填，
         CITP_ORI = ''  # 证件类型（原值）  必填，基本项
-        CTID = ''  # 证件号码  必填，基本项
-        CIVT = ''  # 证件有效期  必填，基本项
+        CTID = fake.ssn(min_age=24, max_age=56)  # 证件号码  必填，基本项
+        CIVT = comm.make_enable_date()  # 证件有效期  必填，基本项
         CTSX = ''  # 性别  必填，基本项
-        CTNT = ''  # 国籍  必填，基本项
+        CTNT = comm.chiose_country()  # 国籍  必填，基本项
         CTNA = ''  # 民族  ，
-        CTBD = ''  # 出生日期  必填，基本项
+        CTBD = fake.date_of_birth()  # 出生日期  必填，基本项
         EDCT = ''  # 学历  ，
         CTVC = ''  # 职业(报送)  ，
         CTVC_ORI = ''  # 职业(原值)  必填，基本项
         WKPL = ''  # 工作单位  ，
         WTVC = ''  # 工作行业  ，
-        WKPS = ''  # 职位  ，
+        WKPS = fake.job()  # 职位  ，
         PICM = ''  # 个人年收入  ，
         FICM = ''  # 家庭年收入  ，
         MRGE = ''  # 婚姻状况  ，
-        ADNT = ''  # 地址国家  必填，
+        ADNT = fake.country()  # 地址国家  必填，
         ADPV = ''  # 地址省  ，
         ADCT = ''  # 地址市  ，
         ADDC = ''  # 地址区县  ，
-        ADDR = ''  # 详细地址  必填，基本项
+        ADDR = fake.address()  # 详细地址  必填，基本项
         PSCD = ''  # 邮编  ，
-        CMBL = ''  # 手机  必填，基本项
+        CMBL = fake.phone_number()  # 手机  必填，基本项
         CTEL = ''  # 固定电话  ，
-        CEML = ''  # 电子邮箱  ，
+        CEML = fake.email()  # 电子邮箱  ，
         CSIO = ''  # 是否境外  必填，
         TRLV = ''  # 风险承受等级  ，
         RLTP = ''  # 关联方类型  必填，
-        RGDT = ''  # 开立日期  必填，
+        RGDT = fake.past_date()  # 开立日期  必填，
         CSDT = ''  # 注销日期  ，
         CHNL = ''  # 建立渠道  必填，
         CMGR = ''  # 客户经理  必填，
@@ -155,17 +155,17 @@ class MakeData:
         MBRC_MULTI = ''  # 相关部门-存在多个部门，用逗号分隔  必填，
 
         # all_col = [self.csnm, ctnm, ctsnm, cten, ctsen, busi_name, appli_country, sub_company, former_name, citp, citp_nt, ctid, ctid_edt, state, city, address, post_code, tel, fax, m_state, m_city, m_address, m_post_code, m_tel, m_fax, pr_mr_ms, pr_name, pr_title, pr_phone, pr_fax, pr_email, pr_address, sec_mr_ms, sec_name, sec_title, sec_phone, sec_fax, sec_email, sec_address, aml_mr_ms, aml_name, aml_title, aml_phone, aml_fax, aml_email, aml_address, client_tp, lfa_type, lfa_type_explain, fud_date, assets_size, country, other_oper_country, desc_business, tin, busi_type, ctvc, indu_code, indu_code_nt, crnm, crit, crit_nt, crid, crid_edt, reg_cptl, reg_cptl_code, remark_ctvc, eecp, scale, rgdt, cls_dt, unit_code, remark, stat_flag_ori, stat_flag, mer_unit, cmgr, act_cd, acc_type1, bank_acc_name, cabm, country_2, statement_type, reals, complex, clear, data_crdt, data_cruser, data_updt, data_upuser]
-        all_col = [CSNM, CCUP, CCMD, CCDW, CTNM, CTEN, CITP, CITP_ORI, CTID, CIVT, CTSX, CTNT, CTNA, CTBD, EDCT, CTVC, CTVC_ORI, WKPL, WTVC, WKPS, PICM, FICM, MRGE, ADNT, ADPV, ADCT, ADDC, ADDR, PSCD, CMBL, CTEL, CEML, CSIO, TRLV, RLTP, RGDT, CSDT, CHNL, CMGR, CONM, MBRC_ORI, CTST, REMK, RSCD, MBRC_MULTI]
+        all_col = [self.CSNM, CCUP, CCMD, CCDW, CTNM, CTEN, CITP, CITP_ORI, CTID, CIVT, CTSX, CTNT, CTNA, CTBD, EDCT, CTVC, CTVC_ORI, WKPL, WTVC, WKPS, PICM, FICM, MRGE, ADNT, ADPV, ADCT, ADDC, ADDR, PSCD, CMBL, CTEL, CEML, CSIO, TRLV, RLTP, RGDT, CSDT, CHNL, CMGR, CONM, MBRC_ORI, CTST, REMK, RSCD, MBRC_MULTI]
         return '|'.join([str(a) if a is not None else ''  for a in all_col])
 
     def make_cert(self):
         """证件信息"""
-        CSNM = '3333'  # 客户号  必填
-        CSTP = '3333'  # 客户类型  必填
+        CSNM = self.CSNM  # 客户号  必填
+        CSTP = self.cust_type  # 客户类型  必填
         CITP = '3333'  # 证件类型（报送）  必填
         CITP_ORI = ''  # 证件类型（原值）  必填  基本项
-        CTID = ''  # 证件号码  必填  基本项
-        CIVT = ''  # 证件有效期  必填  基本项
+        CTID = fake.ssn(min_age=24, max_age=56)  # 证件号码  必填  基本项
+        CIVT = comm.make_enable_date()  # 证件有效期  必填  基本项
         ISNT = ''  # 证件签发国家
         ISUT = ''  # 证件签发机关
         ISDT = ''  # 证件签发日期
@@ -203,9 +203,9 @@ class MakeData:
         CSTP = self.cust_type  # 客户类型 必填
         LKNM = comm.make_name_data()  # 联系人姓名
         LDUT = ''  # 联系人职务
-        CMBL = ''  # 手机
+        CMBL = fake.phone_number()  # 手机
         CTEL = ''  # 固定电话
-        CEML = ''  # 电子邮箱
+        CEML = fake.email()  # 电子邮箱
         CFAX = ''  # 传真
         IDFT = '1'  # 是否主联系 必填
         RSCD = ''  # 来源系统编码
@@ -223,15 +223,15 @@ class MakeData:
         RLTP = '6666'  # 关系类型  必填
         RCNM = ''  # 关系人客户号
         RCTP = self.cust_type  # 关系人类别  必填
-        RLNM = ''  # 关系人姓名/名称  必填
-        RCNT = ''  # 关系人国籍/国家
+        RLNM = fake.name()  # 关系人姓名/名称  必填
+        RCNT = comm.chiose_country()  # 关系人国籍/国家
         RITP = ''  # 关系人证件类型(报送)
         RITP_ORI = ''  # 关系人证件类型(原值)
-        RTID = ''  # 关系人证件号码
-        RTVT = ''  # 关系人证件有效期
+        RTID = fake.ssn(min_age=24, max_age=56)  # 关系人证件号码
+        RTVT = comm.make_enable_date()  # 关系人证件有效期
         RTEL = ''  # 关系人联系电话
         HPER = ''  # 持股比例
-        HAMT = ''  # 持股金额
+        HAMT = comm.make_hold_amt()  # 持股金额
         RSCD = ''  # 来源系统编码
         BLTP = ''  # 受益所有人所属类型
         RLAD = ''  # 关系人地址
@@ -273,13 +273,13 @@ class MakeData:
         COBN = comm.make_cabm_data()  # 委托人开户行名称  必填
         CATP = ''  # 委托人账号类型（报送）
         CATP_ORI = ''  # 委托人账号类型（原值）  必填
-        COAN = ''  # 委托人开户行账号  必填
-        CADR = ''  # 委托人开户行所在地
-        ABAN = ''  # 授权业务办理人姓名
+        COAN = fake.bban()  # 委托人开户行账号  必填
+        CADR = fake.address()  # 委托人开户行所在地
+        ABAN = fake.name()  # 授权业务办理人姓名
         ABIT = ''  # 授权业务办理人证件类型（报送）
         ABIT_ORI = ''  # 授权业务办理人证件类型（原值）
-        ABAI = ''  # 授权业务办理人证件号码
-        ABVT = ''  # 授权业务办理人证件有效期
+        ABAI = fake.ssn(min_age=24, max_age=56)  # 授权业务办理人证件号码
+        ABVT = comm.make_enable_date()  # 授权业务办理人证件有效期
         SIDT = comm.make_trade_time19()  # 签订时间  必填
         EPDT = ''  # 到期时间  必填
         CPRD = ''  # 合同期间  必填
@@ -298,7 +298,7 @@ class MakeData:
         TRTP = comm.make_trtp_data()  # 信托类型  必填
         CFNO = ''  # 初始委托合同号
         CLNO = ''  # 受益权来源合同号
-        ZAMT = ''  # 委托转让合同的转让金额
+        ZAMT = comm.make_hold_amt()  # 委托转让合同的转让金额
         ZFVL = ''  # 转让合同的公允价值
         RCMO = ''  # 推介来源机构
         RCMP = ''  # 推介地类型
@@ -312,7 +312,7 @@ class MakeData:
         IMCN = ''  # 投资顾问或管理者客户号
         MBRC = ''  # 合同管理部门  必填
         TABN = ''  # 信托财产专户开户行名称  必填
-        TAAN = ''  # 信托财产专户账号  必填
+        TAAN = fake.bban()  # 信托财产专户账号  必填
         RSCD = ''  # 来源系统编码  必填
         TCID = ''  # 信托合同号/受益权转让登记号  必填
 
@@ -326,16 +326,16 @@ class MakeData:
         """
         TCSN = '1111'  # 合同ID 必填
         BNCN = '1111'  # 受益人客户号
-        BNNM = '1111'  # 受益人姓名/名称 必填
+        BNNM = fake.name()  # 受益人姓名/名称 必填
         BITP = ''  # 受益人证件类型（报送） 必填
         BITP_ORI = ''  # 受益人证件类型（原值） 必填
-        BNID = ''  # 受益人证件号码 必填
-        BIVT = ''  # 受益人证件有效期 必填
+        BNID = fake.ssn(min_age=24, max_age=56)  # 受益人证件号码 必填
+        BIVT = comm.make_enable_date()  # 受益人证件有效期 必填
         BATP = ''  # 受益人账号类型（报送） 必填
         BATP_ORI = ''  # 受益人账号类型（原值） 必填
-        BOAN = ''  # 受益人开户行账号 必填
+        BOAN = fake.bban()  # 受益人开户行账号 必填
         BOBN = ''  # 受益人开户行名称 必填
-        BOBA = ''  # 受益人开户行所在地
+        BOBA = fake.address()  # 受益人开户行所在地
         RLMK = ''  # 委托人与受益人关系说明 必填
         BNTP = ''  # 受益人类型
         BNMD = ''  # 受益人分配模式
@@ -367,13 +367,13 @@ class MakeData:
         ABAN = fake.name()  # 授权业务办理人姓名
         ABIT = ''  # 授权业务办理人证件类型（报送）
         ABIT_ORI = ''  # 授权业务办理人证件类型（原值）
-        ABAI = fake.ssn(min_age=18, max_age=90)  # 授权业务办理人证件号码
-        ABVT = ''  # 授权业务办理人证件有效期
-        SIDT = ''  # 签订时间  必填
+        ABAI = fake.ssn(min_age=25, max_age=50)  # 授权业务办理人证件号码
+        ABVT = comm.make_enable_date()  # 授权业务办理人证件有效期
+        SIDT = fake.past_date()  # 签订时间  必填
         EPDT = ''  # 到期时间  必填
         CPRD = ''  # 合同期间  必填
-        CCUR = ''  # 合同币种  必填
-        TAMT = ''  # 合同金额  必填
+        CCUR = comm.make_tctp_data()  # 合同币种  必填
+        TAMT = comm.make_hold_amt()  # 合同金额  必填
         CAMT = ''  # 当前金額/份额  必填
         PMTD = ''  # 合同交付方式  必填
         CLMT = ''  # 授信额度
@@ -403,8 +403,8 @@ class MakeData:
         合同余额表
         :return:
         """
-        TSDT = 'wwww'  # 统计日期 必填
-        TCSN = 'wwww'  # 合同ID 必填
+        TSDT = fake.date()  # 统计日期 必填
+        TCSN = comm.random_num(18)  # 合同ID 必填
         TCTP = 'wwww'  # 委托/运用合同 必填
         CAMT = ''  # 当前金額/份额 必填
         RSCD = ''  # 来源系统编码 必填
@@ -420,33 +420,33 @@ class MakeData:
         交易表
         :return:
         """
-        TICD = 'wwww'  # 业务标识号  必填
-        TCSN = 'wwww'  # 信托合同号/受益权转让登记号  必填
+        TICD = comm.random_str(5) + comm.random_num(12)  # 业务标识号  必填
+        TCSN = comm.random_str(5) + comm.random_num(12)  # 信托合同号/受益权转让登记号  必填
         CSTP = self.cust_type  # 客户类别  必填
         CSNM = self.CSNM  # 客户号  必填
         CTNM = fake.name()  # 客户名称  必填
         CITP = ''  # 客户证件类型（报送）  必填
         CITP_ORI = ''  # 客户证件类型（原值）  必填
-        CTID = fake.ssn()  # 客户证件号码  必填
+        CTID = fake.ssn(min_age=24, max_age=56)  # 客户证件号码  必填
         CBAT = ''  # 客户的银行账号类型（报送）  必填
         CBAT_ORI = ''  # 客户的银行账号类型（原值）  必填
         CBAC = fake.bban()  # 客户的银行账号  必填
         COBN = CTNM  # 客户银行账号开户名称  必填
         CABM = comm.make_cabm_data()  # 客户银行账号的开户行名称  必填
         CABD = fake.address()  # 客户银行账号的开户所在地
-        TSDT = ''  # 交易日期  必填
+        TSDT = fake.date_time_this_month()  # 交易日期  必填
         BSTP = ''  # 业务类型  必填
         TRTP = ''  # 交易类型   必填
         TSTP = ''  # 交易方式  必填
         TPFD = ''  # 资产流动方向  必填
-        TCCT = ''  # 交易币种  必填
-        TCCA = ''  # 交易金额  必填
-        TCCA_CNY = ''  # 交易金额（折人民币）
+        TCCT = comm.make_tctp_data()  # 交易币种  必填
+        TCCA = comm.make_hold_amt()  # 交易金额  必填
+        TCCA_CNY = round(comm.make_hold_amt()/7,2)  # 交易金额（折人民币）
         TCRT = ''  # 汇率
         TRIO = ''  # 跨境标识  必填
-        REMK = ''  # 备注（交易说明、用途）  必填
-        TABA = ''  # 信托财产专户开户行名称  必填
-        TAAN = ''  # 信托财产专户账号  必填
+        REMK = fake.text(max_nb_chars=100)  # 备注（交易说明、用途）  必填
+        TABA = comm.make_cabm_data()  # 信托财产专户开户行名称  必填
+        TAAN = fake.bban()  # 信托财产专户账号  必填
         BINO = ''  # 票据号
         IMCN = ''  # 投资顾问或管理人客户号
         MBRC = ''  # 管理机构  必填

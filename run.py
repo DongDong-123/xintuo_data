@@ -83,7 +83,7 @@ def running():
         with open(os.path.join(zip_floder,'{}.txt'.format(file_date_time)), 'w') as f:
             pass
 
-        zip_file(zip_floder, file_date_time)
+        # zip_file(zip_floder, file_date_time)
 
     end_time = time.time()
     print("执行时间：", end_time - start_time)  # 13
