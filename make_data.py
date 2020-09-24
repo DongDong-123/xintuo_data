@@ -26,7 +26,7 @@ class MakeData:
         CCUP = '1111'  # 上游客户标识  ,
         CCMD = '1111'  # 中游客户标识  ,
         CCDW = 100  # 下游客户标识  ,
-        CTTP = ''  # 客户类型  ,
+        CTTP = comm.make_CTTP_data()  # 客户类型  ,  01：法人;03：个体工商户；04：其他组织
         self.CTNM = comm.org_name()  # 客户名称  必填, 基本项
         CTEN = ''  # 拼音/英文名称  ,
         CITP = comm.cert_type('2')  # 证件类型（报送）  必填, 基本项
@@ -36,7 +36,7 @@ class MakeData:
         RGTP = ''  # 登记注册类型  ,
         RGNO = ''  # 登记注册号  ,
         CTVC = ''  # 行业（报送）  必填, 基本项
-        CTVC_ORI = ''  # 行业（原值）  必填, 基本项
+        CTVC_ORI = comm.make_CTVC_data()  # 行业（原值）  必填, 基本项
         CRNM = comm.make_name_data(3)  # 法定代表人姓名  必填, 基本项
         CRNT = comm.chiose_country()  # 法定代表人国籍  必填, 基本项
         CRIT = comm.cert_type('1')  # 法定代表人证件类型（报送）  必填, 基本项
@@ -87,16 +87,16 @@ class MakeData:
         ISMB = ''  # 是否托管行  ,
         ISIA = ''  # 是否投资顾问  ,
         ISLA = ''  # 是否贷款运用方  ,
-        MBRC_ORI = ''  # 管理机构（原值）  必填,
+        MBRC_ORI = '01'  # 管理机构（原值）  必填,
         CTST = comm.cust_status_2()  # 客户状态  必填,
         REMK = fake.text(max_nb_chars=30)  # 备注  ,
-        RSCD = ''  # 来源系统编码  必填,
+        RSCD = comm.make_RSCD_data()  # 来源系统编码  必填,
         BNNM = fake.name()  # 控股股东或实际控制人姓名  ,
-        BITP = ''  # 控股股东或实际控制人证件类型（报送）  ,
+        BITP = comm.make_ABIT_data()  # 控股股东或实际控制人证件类型（报送）  ,
         BITP_ORI = ''  # 控股股东或实际控制人证件类型（原值）  ,
         BNID = fake.ssn(min_age=24, max_age=56)  # 控股股东或实际控制人证件号码  ,
         BIVT = comm.make_enable_date()  # 控股股东或实际控制人证件有效期  ,
-        MBRC_MULTI = ''  # 相关部门-存在多个部门，用逗号分隔  必填,
+        MBRC_MULTI = '01,02'  # 相关部门-存在多个部门，用逗号分隔  必填,
         BEON = ''  # 受益所有人标识  ,
         EMRS = ''  # 豁免原因  ,
 
@@ -112,13 +112,13 @@ class MakeData:
         CCUP = '2222'  # 上游客户标识  ，
         CCMD = '2222'  # 中游客户标识  ，
         CCDW = ''  # 下游客户标识  ，
-        CTNM = ''  # 客户名称  必填，基本项
+        CTNM = comm.make_name_data()  # 客户名称  必填，基本项
         CTEN = ''  # 拼音/英文名称  ，
-        CITP = ''  # 证件类型（报送）  必填，
-        CITP_ORI = ''  # 证件类型（原值）  必填，基本项
+        CITP = comm.make_ABIT_data()  # 证件类型（报送）  必填，
+        CITP_ORI = CITP  # 证件类型（原值）  必填，基本项
         CTID = fake.ssn(min_age=24, max_age=56)  # 证件号码  必填，基本项
         CIVT = comm.make_enable_date()  # 证件有效期  必填，基本项
-        CTSX = ''  # 性别  必填，基本项
+        CTSX = comm.make_CTSX_data()  # 性别  必填，基本项
         CTNT = comm.chiose_country()  # 国籍  必填，基本项
         CTNA = ''  # 民族  ，
         CTBD = fake.date_of_birth()  # 出生日期  必填，基本项
