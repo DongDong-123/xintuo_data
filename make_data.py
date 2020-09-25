@@ -123,8 +123,8 @@ class MakeData:
         CTNA = ''  # 民族  ，
         CTBD = fake.date_of_birth()  # 出生日期  必填，基本项
         EDCT = ''  # 学历  ，
-        CTVC = ''  # 职业(报送)  ，
-        CTVC_ORI = ''  # 职业(原值)  必填，基本项
+        CTVC = comm.make_CTVC_data2()  # 职业(报送)  ，
+        CTVC_ORI = CTVC  # 职业(原值)  必填，基本项
         WKPL = ''  # 工作单位  ，
         WTVC = ''  # 工作行业  ，
         WKPS = fake.job()  # 职位  ，
@@ -140,7 +140,7 @@ class MakeData:
         CMBL = fake.phone_number()  # 手机  必填，基本项
         CTEL = ''  # 固定电话  ，
         CEML = fake.email()  # 电子邮箱  ，
-        CSIO = ''  # 是否境外  必填，
+        CSIO = comm.make_yes_no_unused()  # 是否境外  必填， 1	境内， 0境外
         TRLV = ''  # 风险承受等级  ，
         RLTP = ''  # 关联方类型  必填，
         RGDT = fake.past_date()  # 开立日期  必填，
