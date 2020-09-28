@@ -269,11 +269,11 @@ class MakeData:
         PJNM = '资产委托合同项目名称{}'.format(num)  # 项目名称  必填
         PJTP = ''  # 项目类型
         CSTP = self.cust_type  # 委托人类别  必填  1:个人 2机构
-        CTTP = ''  # 委托人类型
+        CTTP = comm.make_CTTP_data()  # 委托人类型
         CSNM = comm.random_num(15)  # 委托人客户号  必填
         COBN = comm.make_cabm_data()  # 委托人开户行名称  必填
         CATP = ''  # 委托人账号类型（报送）
-        CATP_ORI = ''  # 委托人账号类型（原值）  必填
+        CATP_ORI = comm.make_BATP_ORI_data()  # 委托人账号类型（原值）  必填
         COAN = fake.bban()  # 委托人开户行账号  必填
         CADR = fake.address()  # 委托人开户行所在地
         ABAN = fake.name()  # 授权业务办理人姓名
@@ -357,9 +357,9 @@ class MakeData:
         PJNO = comm.random_str(5) + comm.random_num(10)  # 项目编号  必填
         PJNM = '资产委托合同项目名称{}'.format(num)  # 项目名称  必填
         PJTP = comm.make_PJTP_data()  # 项目类型  必填
-        CSTP = ''  # 运用方类别  必填
-        CTTP = ''  # 运用方类型  必填
-        CSNM = ''  # 运用方客户号  必填
+        CSTP = comm.make_comm_re_1_2()  # 运用方类别  必填  1,个人2机构
+        CTTP = comm.make_CTTP_data()  # 运用方类型  必填
+        CSNM = comm.random_str(12)  # 运用方客户号  必填
         LOBN = comm.make_cabm_data()  # 运用方开户行名称  必填
         LATP = ''  # 运用方账号类型（报送）  必填
         LATP_ORI = comm.make_BATP_ORI_data()  # 运用方账号类型（原值）  必填

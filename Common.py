@@ -706,6 +706,12 @@ class CommonFunction:
         ])
 
     def make_CTTP_data(self):
+        """
+        客户类型
+        委托人类型
+        运用方类型
+        :return:
+        """
         return random.choice([
             '01', # 法人
             '03', # 个体工商户
@@ -1131,6 +1137,7 @@ class CommonFunction:
     def make_comm_re_1_2(self):
         """
         委托/运用合同
+        运用方类别
         :return:
         """
         return random.choice([
@@ -1553,7 +1560,7 @@ class CommonFunction:
 
     def make_BATP_ORI_data(self):
         """
-        账号类型（原值）
+        所有的账号类型（原值）
         :return:
         """
         return random.choice([
