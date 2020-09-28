@@ -58,7 +58,7 @@ class SaveFile:
     def write_to_txt(self, data, file_name,file_date_time):
         filename = '_'.join([file_name, file_date_time])
 
-        print(filename,data)
+        # print(filename,data)
         filepath = os.path.join(zip_floder, '{}.txt'.format(filename))
         if not os.path.exists(filepath):
             with open(filepath, '+a', encoding='utf-8') as f:
